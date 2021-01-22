@@ -1,0 +1,31 @@
+# Getting the day by giving just month, date, and year.
+
+for i in range(1, 4):
+    d = int(input("Date is....(1-31): "))
+    m = int(input("Month is....(1-12): "))
+    y = int(input("Year is....(any): "))
+    week = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    k1 = int((1461 * (y - 2001) // 4))
+    k2 = int((1461 * (2004 - y) // 4))
+    if m > 2 and y % 4 == 0:
+        january = int(2)
+    elif m > 2 and y % 4 != 0:
+        january = int(3)
+    else:
+        january = int(0)
+    if m == 5 or m == 6:
+        april = int(1)
+    elif m == 7 or m == 8 or m == 9:
+        april = int(2)
+    elif m == 10 or m == 11:
+        april = int(3)
+    elif m == 12:
+        april = int(4)
+    else:
+        april = int(0)
+    if y >= 2001:
+        f = int(((k1 + 31 * (m - 1) - april - january + d) % 7) + 2)
+        print("The day is : " + week[f])
+    else:
+        f = int(6 - ((k2 - 31 * (m - 1) + april + january - d + 1) % 7))
+        print("The day is : " + week[f])
